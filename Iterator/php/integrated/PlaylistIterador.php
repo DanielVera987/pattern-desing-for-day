@@ -3,15 +3,15 @@
 class PlaylistIterador implements \Iterator
 {
     private $index = 0;
-    private $collection = [];
+    private $collection;
 
-    public function __construct($collection)
+    public function __construct(\IteratorAggregate $collection)
     {
         $this->collection = $collection;
     }
 
-    function current(): mixed {
-        return $this->collection[$this->index];
+    function current() {
+        return $this->collection->getAll()[$this->index];
     }
 
     function key(): mixed {
@@ -27,7 +27,7 @@ class PlaylistIterador implements \Iterator
     }
 
     function valid(): bool {
-        if (isset($this->collection[$this->index])) {
+        if (isset($this->collection->getAll()[$this->index])) {
             return true;
         }
 

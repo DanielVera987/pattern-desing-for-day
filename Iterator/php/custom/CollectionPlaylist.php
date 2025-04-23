@@ -13,7 +13,12 @@ class CollectionPlaylist implements CollectionInterface
         $this->playlist[] = $playlist;
     }
 
+    public function getAll() 
+    {
+        return $this->playlist;
+    }
+
     public function getIterador(): IteradorInterface {
-        return new PlaylistIterador($this->playlist);
+        return new PlaylistIterador($this);
     }
 }

@@ -3,9 +3,9 @@
 class PlaylistIterador implements IteradorInterface
 {
     private $pos = 0;
-    private $collection = [];
+    private $collection;
 
-    public function __construct($collection)
+    public function __construct(CollectionInterface $collection = null)
     {
         $this->collection = $collection;
     }
@@ -13,14 +13,14 @@ class PlaylistIterador implements IteradorInterface
         $this->pos++;
     }
     public function valid(): bool {
-        if (isset($this->collection[$this->pos])) {
+        if (isset($this->collection->getAll()[$this->pos])) {
             return true;
         }
 
         return false;
     }
     public function current() {
-        return $this->collection[$this->pos];
+        return $this->collection->getAll()[$this->pos];
     }
     public function index() {
         return $this->pos;

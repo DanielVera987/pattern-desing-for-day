@@ -2,14 +2,25 @@
 
 class PlaylistCollection implements \IteratorAggregate
 {
-    private $collection = [];
+    public $collection = [];
 
-    public function __construct($collection) 
+    public function __construct($collection = []) 
     {
         $this->collection = $collection;
     }
-    function getIterator(): Traversable
+
+    public function getAll() 
     {
-        return new PlaylistIterador();
+        return $this->collection;
+    }
+
+    public function add($item)
+    {
+        return $this->collection[] = $item;
+    }
+
+    function getIterator(): \Iterator
+    {
+        return new PlaylistIterador($this);
     }
 }
